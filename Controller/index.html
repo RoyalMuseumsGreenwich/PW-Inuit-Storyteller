@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Iniut Storyteller - Controller</title>
+	<link rel="stylesheet" type="text/css" href="lib/animate.css">
+	<link rel="stylesheet" type="text/css" href="css/fonts_MrEaves.css">
+	<link rel="stylesheet" type="text/css" href="css/fonts_MrEavesSanOT.css">
+	<link rel="stylesheet" type="text/css" href="css/fonts_MrEavesXLModOT.css">
+	<link rel="stylesheet" type="text/css" href="css/mediaplayer.css">
+	<link rel="stylesheet" type="text/css" href="css/videoplayer.css">
+	<link rel="stylesheet" type="text/css" href="css/attractor.css">
+	<script type="text/javascript" src="lib/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="js/mediaplayer.js"></script>
+	<script type="text/javascript" src="js/controller.js"></script>
+</head>
+
+<body>
+
+	<div id="container">
+		
+
+		<!-- ATTRACT SCREEN -->
+		<div id="attractScreen" class="screen">
+			<div class="attractorTextbox">
+				<div class="barViewport aboveBarViewport">
+					<div class="barContent aboveBar attractorAnim">
+						<span class="attractorHeadline">Placeholder</span>
+					</div>
+				</div>
+<!-- 				<div class="dividerBar attractorAnim"></div> -->
+				<div class="barViewport belowBarViewport">
+					<div class="barContent belowBar attractorAnim">
+						<span class="attractorBodyText">Placeholder</span>
+					</div>
+				</div>
+			</div>
+<!-- 			<div class="touchToStartBtn"><span class="dot"></span><span class="btnText">Touch the screen to start</span></div>
+			<div class="textBackdropDiv"></div> -->
+<!-- 			<div class="categoryIconDiv attractorAnim">
+				<img src="img/category.svg" class="attractorAnim">
+			</div> -->
+			<video autoplay loop class="attractorVid">
+				<source src="media/attractor2_p.mp4" type="video/webm">
+			</video>
+		</div>
+
+
+		<!-- STILL THERE SCREEN -->
+		<div id="stillThereScreen" class="screen" hidden>
+			<h1>Are you still there?</h1>
+			<h3>Touch the screen or I will restart in <span id="stillThereSpan">X</span> second<span id="stillThereSpanS">s</span></h3>
+			<button id="stillThereBtn" class="animated pulse infinite">Continue watching</button>
+		</div>
+
+
+		<!-- MENU SCREEN -->
+		<div id="menuScreen" class="screen">
+			<div id="obscurerLeft" class="obscurer"></div>
+			<div id="obscurerRight" class="obscurer"></div>
+			<div id="obscurerTop" class="obscurer"></div>
+			<div id="obscurerBottom" class="obscurer"></div>
+			<div class="menuOverlay"></div>
+			<video autoplay loop class="attractorVid" hidden>
+				<source src="" type="video/webm">
+			</video>
+			<div id="menuTitle"></div>
+			<div id="thumbnailDiv"></div>
+		</div>
+
+
+		<!-- VIDEO PLAYER SCREEN -->
+		<div id="videoPlayerScreen" class="screen">
+			<div id="videoPlayerDiv">
+
+				<div id="menuBtnDiv">
+					<div id="menuBtnBg"></div>
+					<button id="menuBtn"></button>
+				</div>
+
+				<video id="videoBsl" class="hidden">
+			    <source src="">
+			  </video>
+
+			  <video id="videoMain">
+			    <source src="">
+				  <track id="subtitleTrack" kind="subtitles" srclang="en" src="" label="English" default />
+			  </video>
+
+				<span id="backgroundShadow"></span>
+
+			  <div id="vidControls">
+					<span id="captionDisplay" class="hidden"></span>
+
+					<div id="seekSlider">
+						<div id="seekTrack">
+							<div id="seekComplete"></div>
+						</div>
+					</div>
+
+					<div id="buttonWrapper">
+					  <button id="playPauseBtn" class="pause"></button>
+						<button id="restartBtn"></button>
+						<div id="durationWrapper">
+					    <span id="curTimeText">00:00</span> / <span id="durTimeText">00:00</span>
+						</div>
+						<div id="titleWrapper">
+							<span id="movieTitle">Movie title</span>
+						</div>
+						<button id="bslBtn" class="toggleBtn"><span>BSL</span></button>
+						<button id="captionBtn" class="toggleBtn"><span>CC</span></button>
+				  </div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+</body>
+</html>

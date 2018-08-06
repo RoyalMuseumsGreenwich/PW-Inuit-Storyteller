@@ -1,0 +1,29 @@
+@font-face {
+  font-family: MrEavesSanOTBold;
+  src: url("../fonts/MrEavesSanOT/Emigre - MrEavesSanOT-Bold.otf");
+}
+
+@font-face {
+  font-family: MrEavesSanOTBoldItalic;
+  src: url("../fonts/MrEavesSanOT/Emigre - MrEavesSanOT-BoldItalic.otf");
+}
+
+@font-face {
+  font-family: MrEavesSanOTHeavy;
+  src: url("../fonts/MrEavesSanOT/Emigre - MrEavesSanOT-Heavy.otf");
+}
+
+@font-face {
+  font-family: MrEavesSanOTHeavyItalic;
+  src: url("../fonts/MrEavesSanOT/Emigre - MrEavesSanOT-HeavyItalic.otf");
+}
+
+@font-face {
+  font-family: MrEavesSanOTReg;
+  src: url("../fonts/MrEavesSanOT/Emigre - MrEavesSanOT-Reg.otf");
+}
+
+@font-face {
+  font-family: MrEavesSanOTRegItalic;
+  src: url("../fonts/MrEavesSanOT/Emigre - MrEavesSanOT-RegItalic.otf");
+}

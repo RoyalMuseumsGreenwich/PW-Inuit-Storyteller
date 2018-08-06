@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+
+	<xmlType>Content</xmlType>
+
+	<config>
+		<inactivityTimerMax>6</inactivityTimerMax>
+		<stillThereTimeMax>5</stillThereTimeMax>
+		<!-- if portraitMode is not 'true', content is displayed landscape -->
+		<portraitMode>true</portraitMode>
+		<!-- layout variants not currently implemented -->
+		<layoutVariant>1</layoutVariant>
+		<!-- clear if no title is to be displayed above thumbnails -->
+		<menuTitle>Inuit Storyteller</menuTitle>
+		<!-- if no image is provided, the attract screen vid will play in the background -->
+		<menuBgImg>media/bg-portrait.png</menuBgImg>
+		<!-- if true, video controls will be larger -->
+		<smallScreen>true</smallScreen>
+		<!-- if true, enables idle timer for auto-hiding of video controls --> 
+		<hideControls>false</hideControls>
+		<!-- accepts 'top', 'middle', defaults to 'bottom' -->
+		<subtitlePosition></subtitlePosition>
+		<playBslByDefault>false</playBslByDefault>
+		<playSubsByDefault>true</playSubsByDefault>
+		<hideBslBtn>true</hideBslBtn>
+		<hideSubsBtn>true</hideSubsBtn>
+	</config>
+
+
+	<defaultFolders>
+		<video>media</video>
+		<bsl>media</bsl>
+		<subtitles>media</subtitles>
+		<thumbnailImages>media</thumbnailImages>
+	</defaultFolders>
+
+	<clips>
+
+		<clip>
+			<title>Inuit Storyteller</title>
+			<description>Inuit Storyteller description</description>
+			<attribution></attribution>
+			<video>
+				<file>attractor2_p.mp4</file>
+			</video>
+			<subtitles>
+				<file>David.vtt</file>
+			</subtitles>
+			<thumbnailImage>
+				<file>bg-portrait.png</file>
+			</thumbnailImage>
+		</clip>
+
+	</clips>
+
+</document>

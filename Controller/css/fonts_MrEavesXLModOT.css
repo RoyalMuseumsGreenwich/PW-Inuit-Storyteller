@@ -1,0 +1,69 @@
+@font-face {
+  font-family: MrEavesXLModOTBold;
+  src: url("../fonts/MrEavesXLModOT/Emigre - MrEavesXLModOT-Bold.otf");
+}
+
+@font-face {
+  font-family: MrEavesXLModOTBoldItalic;
+  src: url("../fonts/MrEavesXLModOT/Emigre - MrEavesXLModOT-BoldItalic.otf");
+}
+
+@font-face {
+  font-family: MrEavesXLModOTBook;
+  src: url("../fonts/MrEavesXLModOT/Emigre - MrEavesXLModOT-Book.otf");
+}
+
+@font-face {
+  font-family: MrEavesXLModOTBookItalic;
+  src: url("../fonts/MrEavesXLModOT/Emigre - MrEavesXLModOT-BookItalic.otf");
+}
+
+@font-face {
+  font-family: MrEavesXLModOTHeavy;
+  src: url("../fonts/MrEavesXLModOT/Emigre - MrEavesXLModOT-Heavy.otf");
+}
+
+@font-face {
+  font-family: MrEavesXLModOTHeavyItalic;
+  src: url("../fonts/MrEavesXLModOT/Emigre - MrEavesXLModOT-HeavyItalic.otf");
+}
+
+@font-face {
+  font-family: MrEavesXLModOTLight;
+  src: url("../fonts/MrEavesXLModOT/Emigre - MrEavesXLModOT-Light.otf");
+}
+
+@font-face {
+  font-family: MrEavesXLModOTLightItalic;
+  src: url("../fonts/MrEavesXLModOT/Emigre - MrEavesXLModOT-LightItalic.otf");
+}
+
+@font-face {
+  font-family: MrEavesXLModOTReg;
+  src: url("../fonts/MrEavesXLModOT/Emigre - MrEavesXLModOT-Reg.otf");
+}
+
+@font-face {
+  font-family: MrEavesXLModOTRegItalic;
+  src: url("../fonts/MrEavesXLModOT/Emigre - MrEavesXLModOT-RegItalic.otf");
+}
+
+@font-face {
+  font-family: MrEavesXLModOTThin;
+  src: url("../fonts/MrEavesXLModOT/Emigre - MrEavesXLModOT-Thin.otf");
+}
+
+@font-face {
+  font-family: MrEavesXLModOTThinItalic;
+  src: url("../fonts/MrEavesXLModOT/Emigre - MrEavesXLModOT-ThinItalic.otf");
+}
+
+@font-face {
+  font-family: MrEavesXLModOTUltra;
+  src: url("../fonts/MrEavesXLModOT/Emigre - MrEavesXLModOT-Ultra.otf");
+}
+
+@font-face {
+  font-family: MrEavesXLModOTUltra;
+  src: url("../fonts/MrEavesXLModOT/Emigre - MrEavesXLModOT-UltraItalic.otf");
+}

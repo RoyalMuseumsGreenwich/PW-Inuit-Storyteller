@@ -1,0 +1,30 @@
+@font-face {
+  font-family: MrEavesReg;
+  src: url("../fonts/MrEaves/Emigre - MrEavesModOT-Reg.otf");
+}
+
+@font-face {
+  font-family: MrEavesRegItalic;
+  src: url("../fonts/MrEaves/Emigre - MrEavesModOT-RegItalic.otf");
+}
+
+@font-face {
+  font-family: MrEavesBook;
+  src: url("../fonts/MrEaves/mreavesmodot-book.otf");
+}
+
+@font-face {
+  font-family: MrEavesBookItalic;
+  src: url("../fonts/MrEaves/mreavesmodot-bookitalic.otf");
+}
+
+@font-face {
+  font-family: MrEavesBold;
+  src: url("../fonts/MrEaves/mreavesmodot-bold.otf");
+}
+
+@font-face {
+  font-family: MrEavesBoldItalic;
+  src: url("../fonts/MrEaves/mreavesmodot-bolditalic.otf");
+}
+

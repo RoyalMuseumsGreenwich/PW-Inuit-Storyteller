@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+
+	<xmlType>Content</xmlType>
+
+	<config>
+		<inactivityTimerMax>60</inactivityTimerMax>
+		<stillThereTimeMax>10</stillThereTimeMax>
+		<!-- if portraitMode is not 'true', content is displayed landscape -->
+		<portraitMode>true</portraitMode>
+		<!-- layout variants not currently implemented -->
+		<layoutVariant>1</layoutVariant>
+		<!-- clear if no title is to be displayed above thumbnails -->
+		<menuTitle>Inuit Storyteller - Player</menuTitle>
+		<!-- if no image is provided, the attract screen vid will play in the background -->
+		<menuBgImg>media/bg-portrait.png</menuBgImg>
+		<!-- if true, video controls will be larger -->
+		<smallScreen>false</smallScreen>
+		<!-- if true, enables idle timer for auto-hiding of video controls --> 
+		<hideControls>true</hideControls>
+		<!-- accepts 'top', 'middle', defaults to 'bottom' -->
+		<subtitlePosition></subtitlePosition>
+		<playBslByDefault>false</playBslByDefault>
+		<playSubsByDefault>true</playSubsByDefault>
+		<hideBslBtn>true</hideBslBtn>
+		<hideSubsBtn>true</hideSubsBtn>
+	</config>
+
+
+	<defaultFolders>
+		<video>media</video>
+		<bsl>media</bsl>
+		<subtitles>media</subtitles>
+		<thumbnailImages>media</thumbnailImages>
+	</defaultFolders>
+
+
+	<clips>
+
+		<clip>
+			<title>Sammy</title>
+			<description>Inuit Storyteller</description>
+			<attribution></attribution>
+			<video>
+				<file>Alice-gradient.webm</file>
+			</video>
+			<subtitles>
+				<file>Alice.vtt</file>
+			</subtitles>
+			<thumbnailImage>
+				<file></file>
+			</thumbnailImage>
+		</clip>
+
+	</clips>
+
+</document>
