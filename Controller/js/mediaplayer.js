@@ -356,6 +356,7 @@ $(function() {
 	}
 
 	function stillThereTimeout() {
+		resetPlayer();
 		clearStillThereTimer();
 		resetVideoPlayer();
 		showAttractScreen(hideStillThereScreen);
@@ -479,7 +480,7 @@ $(function() {
 
 	$menuBtn.click(function() {
 		if(!lockedControls) {
-			backToMenu();
+			resetPlayer();
 		}
 	});
 
@@ -516,6 +517,7 @@ $(function() {
 	}
 
 	function backToMenu(callback) {
+		// resetPlayer();
 		clearTimeout(backToMenuHandler);
 		backToMenuHandler = 0;
 		startAttractorVids();
@@ -712,7 +714,7 @@ $(function() {
 		if(vid.duration - vid.currentTime < 1) {
 			console.log("Paused at end of playback");
 			lockedControls = true;
-			resetPlayer();
+			revertPlayer();
 		} else {
 			console.log("Paused during playback");
 			var status = {
@@ -738,19 +740,23 @@ $(function() {
 	});
 
 	function resetPlayer() {
-		endHandler = setTimeout(function() {
-			ended = true;
-			console.log("Resetting");
-			backToMenu(function() {
-				lockedControls = false;
-			});
-			var status = {
-				type: 'reset'
-			}
-			postStatus(status);
-			clearTimeout(endHandler);
-		}, 5000);
+		ended = true;
+		console.log("Resetting");
+		backToMenu(function() {
+			lockedControls = false;
+		});
+		var status = {
+			type: 'reset'
+		}
+		postStatus(status);
+		clearTimeout(endHandler);
 	};
+
+	function revertPlayer() {
+		endHandler = setTimeout(function() {
+			resetPlayer();
+		}, 5000);
+	}
 
 	function postStatus(status) {
 		console.log("Posting status...");
