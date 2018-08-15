@@ -2,16 +2,22 @@
   width: 100%;
   height: 100%;
   background: #000;
+  background-image: url('../media/bg-portrait2.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 	position: relative;
 }
 
 #videoMain{ 
-	width:100%;
-	height:100%;
+	// width:100%;
+	height:650px;
+	// border: 2px solid red;
 	position: absolute;
-	top: 0;
+	// top: 0;
+	bottom: 200px;
 	left: 0;
 	z-index: 0;
+	padding-top: 150px;
 }
 
 #videoBsl{ 
@@ -57,11 +63,12 @@
 
 #backgroundShadow {
 	width:100%;
-	height:180px;
+	height:200px;
 	position: absolute;
 	left:0;
 	bottom:0;
-	background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%);
+	background: rgba(0,0,0,0.8);
+	// background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%);
 	opacity: 1;
 	transition: all 0.5s ease;
 }
@@ -102,7 +109,7 @@
 
 #menuBtnDiv {
 	position: absolute;
-	top: -20px;
+	top: -30px;
 	left: -20px;
 	width: 250px;
 	height: 250px;
@@ -114,9 +121,9 @@
 	width: 75%;
 	height: 75%;
 	border-radius: 0 0 200px 0;
-	background: rgba(0,0,0,0.3);
+	background: rgba(229,229,229,1);
 /*	background: radial-gradient(circle at 0% 0%, rgba(0,0,0,0.6) 0%, transparent 60%);*/
-	filter: blur(30px);
+	filter: blur(10px);
 }
 #menuBtn {
 	position: absolute;
@@ -135,7 +142,7 @@
   float: left;
   box-sizing: border-box;
   padding: 35px 30px;
-	font-size:24px;
+	font-size:21px;
 	position:relative;
 }
 
@@ -206,7 +213,7 @@ button.active span{
 
 #captionDisplay {
 	font-family: MrEavesBold;
-	white-space: pre;
+	white-space: pre-wrap;
 	text-align: center;
 	transition: opacity 0.5s ease-in-out;
 	position: absolute;
@@ -219,13 +226,33 @@ button.active span{
 	z-index: 2;
 	font-size: 48px;
 	transform: translateX(-50%);
-	text-shadow: 
-		1px 1px #000,
-		-1px 1px #000,
-		1px -1px #000,
-		-1px -1px #000;
+	// text-shadow: 
+	// 	1px 1px #000,
+	// 	-1px 1px #000,
+	// 	1px -1px #000,
+	// 	-1px -1px #000;
+	// color: white;
+	// text-shadow: 
+	// 	1px 1px #FFF,
+	// 	-1px 1px #FFF,
+	// 	1px -1px #FFF,
+	// 	-1px -1px #FFF;
+	color: black;
 }
 
+#captionBackdrop {
+	position: absolute;
+	left: 0;
+	top:175px;
+	height: 180px;
+	background: #e5e5e5;
+	background: linear-gradient(to bottom,
+		rgba(229,229,229,0) 0%,
+		rgba(229,229,229,1) 5%,
+		rgba(229,229,229,1) 95%,
+		rgba(229,229,229,0) 100%);
+	width: 100%;
+}
 
 .bsl-active {
 	display:block !important;
@@ -278,20 +305,20 @@ button.active span{
 
 .smallScreen {
 	#playPauseBtn, #restartBtn {
-		margin-left: 20px;
+		margin-left: 0px;
 	}
 	#restartBtn {
-		margin-left: 10px;
-		margin-right: 10px;
+		margin-left: 0px;
+		margin-right: 0px;
 	}
 	#durationWrapper, #titleWrapper {
-		font-size: 40px;
+		font-size: 32px;
 	}
 	#durationWrapper {
-		width: 270px;
+		width: 230px;
 	}
 	#curTimeText {
-		width: 105px;
+		width: 83px;
 	}
 	.toggleBtn span {
 		font-size:35px;
@@ -303,84 +330,30 @@ button.active span{
 		height: 200px;
 	}
 	#buttonWrapper {
-		height:125px;
+		height:120px;
 	}
 	button {
-		transform: scale(1.5);
+		transform: scale(1.2);
 	}
 	#playPauseBtn:active, #restartBtn:active, #menuBtn:active {
-		transform: scale(1.35);
+		transform: scale(1.08);
 		opacity: 0.7;
 	}
 	.toggleBtn {
 		width: 150px !important;
 	}
 	.toggleBtn:active {
-		transform: scale(1.425);
+		transform: scale(1.14);
 		opacity: 0.9;
 	}
 	#captionDisplay {
-		width: 80%;
-		bottom:1600px;
+		width: 90%;
+		top:-1000px;
 	}
 	#menuBtn {
 		position: absolute;
 		background-image: url("../img/back-button.svg");
 		top: 50px;
 		left: 40px;
-	}
-}
-
-.specialSub {
-	position: absolute;
-	&.sub1 {
-		font-size: 100px;
-		font-family: MrEavesBold;
-		color: #5bc7a0;
-		&.animate {
-			animation: fadeIn 1s linear;
-			&.remove {
-				animation: fadeOut 0.6s linear;
-			}
-		}
-	}
-	&.sub2 {
-		font-size: 75px;
-		font-family: MrEavesBold;
-		color: white;
-		&.animate {
-			animation: fadeIn 1s linear;
-			&.remove {
-				animation: fadeOut 0.6s linear;
-			}
-		}
-	}
-	&.sub3 {
-		font-size: 72px;
-		color: white;
-		&.animate {
-			animation: fadeIn 0.5s linear;
-			&.remove {
-				animation: fadeOut 0.3s linear;
-			}
-		}
-	}
-}
-
-@keyframes fadeIn {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
-}
-
-@keyframes fadeOut {
-	0% {
-		opacity: 1;
-	}
-	100% {
-		opacity: 0;
 	}
 }

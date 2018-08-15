@@ -6,6 +6,7 @@
 	<attractorHeadline></attractorHeadline>
 	<attractorBodyText></attractorBodyText>
 
-	<attractorVidPath>media/attractor2_p.mp4</attractorVidPath>
+<!-- 	<attractorVidPath>media/attractor2_p.mp4</attractorVidPath> -->
+	<attractorVidPath>media/WarWivesAttract.mp4</attractorVidPath>
 
 </document>

@@ -11,8 +11,8 @@ h1, h2, h3, h4 {
 
 #container {
   position: relative;
-  width: 1920px;
-  height: 1080px;
+  width: 768px;
+  height: 1366px;
   overflow: hidden; }
 
 .screen {
@@ -25,6 +25,9 @@ h1, h2, h3, h4 {
 /*	Screen layering */
 #attractScreen {
   z-index: 4; }
+  #attractScreen video {
+    width: 768px;
+    height: 1366px; }
 
 #stillThereScreen {
   z-index: 3; }
@@ -45,14 +48,16 @@ h1, h2, h3, h4 {
 #stillThereScreen h1 {
   margin-top: 380px;
   font-family: MrEavesBold;
-  font-size: 81px; }
+  font-size: 60px;
+  text-shadow: 0 0 3px black, 0 0 10px black; }
 
 #stillThereScreen h3 {
   margin-top: 30px;
-  margin-left: 650px;
+  margin-left: 135px;
   text-align: left;
+  text-shadow: 0 0 3px black, 0 0 10px black;
   font-family: MrEavesBold;
-  font-size: 36px; }
+  font-size: 28px; }
 
 #stillThereBtn {
   border: none;
@@ -80,11 +85,11 @@ h1, h2, h3, h4 {
   margin: auto;
   padding: 15px 50px;
   background: #1a1a1a;
-  margin-top: 150px;
-  margin-bottom: -150px;
+  margin-top: 80px;
+  margin-bottom: -120px;
   text-align: center;
   font-family: MrEavesBold;
-  font-size: 80px; }
+  font-size: 60px; }
 
 .menuOverlay {
   position: absolute;
@@ -147,7 +152,7 @@ h1, h2, h3, h4 {
   font-family: MrEavesBold;
   position: absolute;
   z-index: 3;
-  font-size: 16px;
+  font-size: 18px;
   letter-spacing: 1.5px;
   bottom: 20px;
   left: 30px;
@@ -156,7 +161,7 @@ h1, h2, h3, h4 {
 
 .thumbInfo {
   position: relative;
-  padding: 30px;
+  padding: 36px;
   box-sizing: border-box;
   height: 45%;
   color: black;
@@ -170,13 +175,14 @@ h1, h2, h3, h4 {
   line-height: 1.2; }
 
 .thumbInfo h4 {
-  font-size: 24px;
+  font-size: 26px;
   line-height: 1.4; }
 
 .thumbAttribution {
-  font-size: 20px;
+  font-size: 22px;
   font-family: MrEavesXLModOTReg;
   position: absolute;
+  line-height: 120%;
   box-sizing: border-box;
   padding: 20px 30px;
   bottom: 0;
@@ -194,8 +200,8 @@ h1, h2, h3, h4 {
 
 .playBtnDiv {
   position: absolute;
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%) rotate(90deg); }
@@ -223,8 +229,8 @@ h1, h2, h3, h4 {
 .playBtnTriangle {
   overflow: hidden;
   position: absolute;
-  top: -85px;
-  left: 43px;
+  top: -112px;
+  left: 19px;
   margin: 7em auto 0;
   border-radius: 15%;
   filter: blur(0.1px);
@@ -261,20 +267,20 @@ h1, h2, h3, h4 {
   padding-left: 445px; }
 
 #container.portrait {
-  height: 1920px;
-  width: 1080px; }
+  height: 1366px;
+  width: 768px; }
 
 #seekSlider {
   width: 50%; }
 
 .portrait #thumbnailDiv {
-  margin-right: calc(0.13 * 1920px);
-  padding-top: calc(0.125 * 1080px);
+  margin-right: calc(0.13 * 768px);
+  padding-top: calc(0.125 * 1366px);
   flex-direction: column; }
 .portrait .thumbnail {
-  width: calc(0.80 * 1920px);
-  height: calc(0.23 * 1080px);
-  margin-bottom: calc(0.02 * 1080px);
+  width: calc(0.80 * 768px);
+  height: calc(0.23 * 1366px);
+  margin-bottom: calc(0.02 * 1366px);
   margin-left: 0;
   flex-direction: row;
   display: flex; }
@@ -290,22 +296,22 @@ h1, h2, h3, h4 {
   top: -20px;
   left: -20px;
   height: 10%;
-  width: calc(1920px + 40px);
+  width: calc(768px + 40px);
   background: linear-gradient(to bottom, black 0%, black 10%, rgba(0, 0, 0, 0.5) 70%, transparent 100%); }
 .portrait #obscurerBottom {
   bottom: -20px;
   left: -20px;
   height: 10%;
-  width: calc(1920px + 40px);
+  width: calc(768px + 40px);
   background: linear-gradient(to top, black 0%, black 10%, rgba(0, 0, 0, 0.5) 70%, transparent 100%); }
 
 .landscape #thumbnailDiv {
-  margin-right: calc(0.13 * 1920px);
+  margin-right: calc(0.13 * 768px);
   padding-left: 250px; }
 .landscape .thumbnail {
-  width: calc(0.22 * 1920px);
-  height: calc(0.60 * 1080px);
-  margin-right: calc(0.04 * 1920px);
+  width: calc(0.22 * 768px);
+  height: calc(0.60 * 1366px);
+  margin-right: calc(0.04 * 768px);
   display: inline-block; }
   .landscape .thumbnail.selected {
     transform: translateY(-5px); }
@@ -315,9 +321,6 @@ h1, h2, h3, h4 {
   .landscape .thumbnail .thumbImg {
     height: 55%;
     width: 100%; }
-.landscape #menuTitle {
-  margin-top: 80px;
-  margin-bottom: -170px; }
 .landscape #obscurerLeft {
   top: -20px;
   left: -20px;
@@ -336,10 +339,10 @@ h1, h2, h3, h4 {
   .smallScreen #stillThereScreen h1 {
     font-family: MrEavesBold;
     margin-top: 380px;
-    font-size: 100px; }
+    font-size: 80px; }
   .smallScreen #stillThereScreen h3 {
     margin-top: 40px;
-    margin-left: 230px;
+    margin-left: 88px;
     text-align: left;
     font-size: 36px; }
   .smallScreen #stillThereScreen #stillThereBtn {

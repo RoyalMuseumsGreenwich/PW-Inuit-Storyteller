@@ -255,12 +255,12 @@
   top: 50%;
   height: 50%; }
 .portrait #attractScreen .touchToStartBtn {
-  width: calc(0.75 * 1920px);
-  left: calc(0.125 * 1920px);
-  bottom: calc(0.125 * 1920px); }
+  width: calc(0.75 * 768px);
+  left: calc(0.125 * 768px);
+  bottom: calc(0.125 * 768px); }
 .portrait #attractScreen .categoryIconDiv {
-  left: calc(0.125 * 1920px);
-  top: calc(0.125 * 1920px); }
+  left: calc(0.125 * 768px);
+  top: calc(0.125 * 768px); }
 
 .landscape #attractScreen .textBackdropDiv {
   width: 50%;
@@ -269,11 +269,11 @@
   width: 50%;
   height: 100%; }
 .landscape #attractScreen .touchToStartBtn {
-  width: calc(0.75 * 1920px / 2);
-  left: calc(0.125 * 1920px / 2);
-  bottom: calc(0.125 * 1920px / 2); }
+  width: calc(0.75 * 768px / 2);
+  left: calc(0.125 * 768px / 2);
+  bottom: calc(0.125 * 768px / 2); }
 .landscape #attractScreen .categoryIconDiv {
-  right: calc(0.125 * 1920px / 2);
-  bottom: calc(0.125 * 1920px / 2); }
+  right: calc(0.125 * 768px / 2);
+  bottom: calc(0.125 * 768px / 2); }
 
 /*# sourceMappingURL=attractor.css.map */

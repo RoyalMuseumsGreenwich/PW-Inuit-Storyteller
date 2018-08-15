@@ -1,0 +1,374 @@
+/*	Global	*/
+body {
+  padding: 0;
+  margin: 0;
+  color: white;
+  font-family: MrEavesReg; }
+
+h1, h2, h3, h4 {
+  font-weight: normal;
+  margin: 0; }
+
+#container {
+  position: relative;
+  width: 1920px;
+  height: 3240px;
+  overflow: hidden; }
+
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; }
+
+/*	Screen layering */
+#attractScreen {
+  z-index: 4; }
+
+#stillThereScreen {
+  z-index: 3; }
+
+#menuScreen {
+  z-index: 2; }
+
+#videoPlayerScreen {
+  z-index: 1; }
+
+/*	Still There screen */
+#stillThereScreen {
+  background: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  text-align: center; }
+
+#stillThereScreen h1 {
+  margin-top: 380px;
+  font-family: MrEavesBold;
+  font-size: 81px; }
+
+#stillThereScreen h3 {
+  margin-top: 30px;
+  margin-left: 635px;
+  text-align: left;
+  font-family: MrEavesBold;
+  font-size: 26px; }
+
+#stillThereBtn {
+  border: none;
+  margin-top: 70px;
+  padding: 20px 50px;
+  border-radius: 8px;
+  background: white;
+  font-size: 24px;
+  color: black;
+  font-family: MrEavesReg;
+  outline: none; }
+
+/*	Menu screen */
+#menuScreen video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -2;
+  background-size: auto;
+  background-repeat: no-repeat; }
+
+#menuTitle {
+  display: table;
+  width: auto;
+  margin: auto;
+  padding: 15px 50px;
+  background: #1a1a1a;
+  margin-top: 150px;
+  margin-bottom: -150px;
+  text-align: center;
+  font-family: MrEavesBold;
+  font-size: 80px; }
+
+.menuOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); }
+
+#thumbnailDiv {
+  position: absolute;
+  box-sizing: border-box;
+  left: 0;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  overflow: scroll;
+  overflow-y: hidden; }
+
+#thumbnailDiv::-webkit-scrollbar {
+  display: none; }
+
+.thumbnail {
+  box-sizing: boundary-box;
+  background: white;
+  color: black;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6), 5px 10px 30px rgba(0, 0, 0, 0.3);
+  flex-shrink: 0;
+  flex-grow: 0;
+  overflow: hidden; }
+  .thumbnail.animated {
+    transition: all 1.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+    /* easeOutCubic */ }
+
+.thumbImg {
+  z-index: 1;
+  position: relative;
+  background-image: url("");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center; }
+
+.thumbImg:after {
+  position: absolute;
+  z-index: 2;
+  content: '';
+  bottom: -20px;
+  left: -10%;
+  height: 90px;
+  width: 120%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, transparent 100%);
+  filter: blur(20px); }
+
+.thumbDuration {
+  font-family: MrEavesBold;
+  position: absolute;
+  z-index: 3;
+  font-size: 16px;
+  letter-spacing: 1.5px;
+  bottom: 20px;
+  left: 30px;
+  text-transform: uppercase;
+  color: white; }
+
+.thumbInfo {
+  position: relative;
+  padding: 30px;
+  box-sizing: border-box;
+  height: 45%;
+  color: black;
+  background: white;
+  z-index: 1; }
+
+.thumbInfo h2 {
+  font-family: MrEavesBold;
+  font-size: 40px;
+  margin-bottom: 20px;
+  line-height: 1.2; }
+
+.thumbInfo h4 {
+  font-size: 24px;
+  line-height: 1.4; }
+
+.thumbAttribution {
+  font-size: 20px;
+  position: absolute;
+  box-sizing: border-box;
+  padding: 20px 30px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-top: 1px solid #DDD;
+  color: #BBB; }
+
+.thumbPadDiv {
+  font-size: 0;
+  width: 100px;
+  height: 100%;
+  flex-shrink: 0;
+  display: inline-block; }
+
+.playBtnDiv {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(90deg); }
+
+.playBtnIconDiv {
+  width: 100%;
+  height: 100%;
+  position: relative; }
+
+.playBtnRing {
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 5px solid white;
+  border-radius: 100px;
+  background: rgba(0, 0, 0, 0.4); }
+
+.playBtnTriangle, .playBtnTriangle:before, .playBtnTriangle:after {
+  width: 4em;
+  height: 4em; }
+
+.playBtnTriangle {
+  overflow: hidden;
+  position: absolute;
+  top: -85px;
+  left: 43px;
+  margin: 7em auto 0;
+  border-radius: 15%;
+  filter: blur(0.1px);
+  transform: translateY(50%) rotate(30deg) skewY(30deg) scaleX(0.866) scale(0.8); }
+
+.playBtnTriangle:before, .playBtnTriangle:after {
+  position: absolute;
+  background: white;
+  pointer-events: auto;
+  content: ''; }
+
+.playBtnTriangle:before {
+  border-radius: 15% 15% 15% 53%;
+  transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(30deg) scaleY(0.866) translateX(-24%); }
+
+.playBtnTriangle:after {
+  border-radius: 15% 15% 53% 15%;
+  transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) skewX(-30deg) scaleY(0.866) translateX(24%); }
+
+.pulse {
+  animation-duration: 2s; }
+
+.obscurer {
+  position: absolute;
+  z-index: 2;
+  filter: blur(10px);
+  pointer-events: none; }
+
+/*	Adaptive styling for different setups */
+.twoThumb .thumbnail {
+  margin-right: 150px; }
+
+#thumbnailDiv.twoThumb {
+  padding-left: 445px; }
+
+#container.portrait {
+  height: 1920px;
+  width: 1080px; }
+
+#seekSlider {
+  width: 50%; }
+
+.portrait {
+  /*	Still There screen */ }
+  .portrait #thumbnailDiv {
+    margin-right: calc(0.13 * 1920px);
+    padding-top: calc(0.125 * 3240px);
+    flex-direction: column; }
+  .portrait .thumbnail {
+    width: calc(0.80 * 1920px);
+    height: calc(0.23 * 3240px);
+    margin-bottom: calc(0.02 * 3240px);
+    margin-left: 0;
+    flex-direction: row;
+    display: flex; }
+    .portrait .thumbnail.unSelected {
+      filter: brightness(50%); }
+    .portrait .thumbnail .thumbImg {
+      height: 100%;
+      width: 50%; }
+    .portrait .thumbnail .thumbInfo {
+      height: 100%;
+      width: 50%; }
+  .portrait #obscurerTop {
+    top: -20px;
+    left: -20px;
+    height: 10%;
+    width: calc(1920px + 40px);
+    background: linear-gradient(to bottom, black 0%, black 10%, rgba(0, 0, 0, 0.5) 70%, transparent 100%); }
+  .portrait #obscurerBottom {
+    bottom: -20px;
+    left: -20px;
+    height: 10%;
+    width: calc(1920px + 40px);
+    background: linear-gradient(to top, black 0%, black 10%, rgba(0, 0, 0, 0.5) 70%, transparent 100%); }
+  .portrait #stillThereScreen h1 {
+    font-family: MrEavesBold;
+    margin-top: 380px;
+    font-size: 100px; }
+  .portrait #stillThereScreen h3 {
+    font-family: MrEavesReg;
+    margin-top: 40px;
+    margin-left: 250px;
+    text-align: left;
+    font-size: 36px; }
+  .portrait #stillThereScreen #stillThereBtn {
+    border: none;
+    margin-top: 90px;
+    padding: 20px 50px;
+    border-radius: 8px;
+    background: white;
+    font-size: 36px;
+    color: black;
+    font-family: MrEavesReg;
+    outline: none; }
+
+.landscape #thumbnailDiv {
+  margin-right: calc(0.13 * 1920px);
+  padding-left: 250px; }
+.landscape .thumbnail {
+  width: calc(0.22 * 1920px);
+  height: calc(0.60 * 3240px);
+  margin-right: calc(0.04 * 1920px);
+  display: inline-block; }
+  .landscape .thumbnail.selected {
+    transform: translateY(-5px); }
+  .landscape .thumbnail.unSelected {
+    transform: translateY(5px);
+    filter: brightness(50%); }
+  .landscape .thumbnail .thumbImg {
+    height: 55%;
+    width: 100%; }
+.landscape #obscurerLeft {
+  top: -20px;
+  left: -20px;
+  height: 120%;
+  width: 200px;
+  background: linear-gradient(to right, black 0%, black 10%, rgba(0, 0, 0, 0.5) 70%, transparent 100%); }
+.landscape #obscurerRight {
+  top: -20px;
+  right: -20px;
+  height: 120%;
+  width: 200px;
+  background: linear-gradient(to left, black 0%, black 10%, rgba(0, 0, 0, 0.5) 70%, transparent 100%); }
+
+.smallScreen {
+  /*	Still There screen */ }
+  .smallScreen #stillThereScreen h1 {
+    font-family: MrEavesBold;
+    margin-top: 380px;
+    font-size: 100px; }
+  .smallScreen #stillThereScreen h3 {
+    margin-top: 40px;
+    margin-left: 230px;
+    text-align: left;
+    font-size: 36px; }
+  .smallScreen #stillThereScreen #stillThereBtn {
+    border: none;
+    margin-top: 90px;
+    padding: 20px 50px;
+    border-radius: 8px;
+    background: white;
+    font-size: 36px;
+    color: black;
+    font-family: MrEavesReg;
+    outline: none; }
+
+/*# sourceMappingURL=mediaplayer.css.map */

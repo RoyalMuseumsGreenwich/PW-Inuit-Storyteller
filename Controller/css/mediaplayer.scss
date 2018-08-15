@@ -1,13 +1,19 @@
 // Landscape
-$screen-height: 1080px;
-$screen-width: 1920px;
+// $screen-height: 1366px;
+// $screen-width: 768px;
 
 // Portrait
-// $screen-height: 1920px;
-// $screen-width: 1080px;
+$screen-height: 1366px;
+$screen-width: 768px;
 
 
 /*	Global	*/
+* {
+	// user-select: none;
+	// touch-action: none;
+	// cursor: none;
+}
+
 body {
 	padding: 0;
 	margin: 0;
@@ -36,6 +42,10 @@ h1, h2, h3, h4 {
 /*	Screen layering */
 #attractScreen {
 	z-index: 4;
+	video {
+		width: $screen-width;
+		height: $screen-height;
+	}
 }
 #stillThereScreen {
 	z-index: 3;
@@ -57,19 +67,22 @@ h1, h2, h3, h4 {
 } #stillThereScreen h1 {
 	margin-top: 380px;
 	font-family: MrEavesBold;
-	font-size: 81px;
+	font-size: 60px;
+	text-shadow: 0 0 3px black, 0 0 10px black;
 } #stillThereScreen h3 {
 	margin-top: 30px;
-	margin-left: 650px;
+	margin-left: 135px;
 	text-align: left;
+	text-shadow: 0 0 3px black, 0 0 10px black;
 	font-family: MrEavesBold;
-	font-size: 36px;
+	font-size: 28px;
 } #stillThereBtn {
 	border: none;
 	margin-top: 70px;
 	padding: 20px 50px;
 	border-radius: 8px;
 	background: white;
+	// box-shadow: 0 0 3px black, 0 0 10px black;
 	font-size: 24px;
 	color: black;
 	font-family: MrEavesReg;
@@ -92,11 +105,11 @@ h1, h2, h3, h4 {
 	margin: auto;
 	padding: 15px 50px;
 	background: #1a1a1a;
-	margin-top: 150px;
-	margin-bottom: -150px;
+	margin-top: 80px;
+	margin-bottom: -120px;
 	text-align: center;
 	font-family: MrEavesBold;
-	font-size: 80px;
+	font-size: 60px;
 }
 .menuOverlay {
 	position: absolute;
@@ -159,7 +172,7 @@ h1, h2, h3, h4 {
 	font-family: MrEavesBold;
 	position: absolute;
 	z-index: 3;
-	font-size: 16px;
+	font-size: 18px;
 	letter-spacing: 1.5px;
 	bottom: 20px;
 	left: 30px;
@@ -168,7 +181,7 @@ h1, h2, h3, h4 {
 } 
 .thumbInfo {
 	position: relative;
-	padding: 30px;
+	padding: 36px;
 	box-sizing: border-box;
 	height: 45%;
 	color: black;
@@ -180,13 +193,14 @@ h1, h2, h3, h4 {
 	margin-bottom: 20px;
 	line-height: 1.2;
 } .thumbInfo h4 {
-	font-size: 24px; 
+	font-size: 26px; 
 	line-height: 1.4;
 }
 .thumbAttribution {
-	font-size: 20px; 
+	font-size: 22px; 
 	font-family: MrEavesXLModOTReg;
 	position: absolute;
+	line-height: 120%;
 	box-sizing: border-box;
 	padding: 20px 30px;
 	bottom: 0;
@@ -206,8 +220,8 @@ h1, h2, h3, h4 {
 
 .playBtnDiv {
 	position: absolute;
-	width: 150px;
-	height: 150px;
+	width: 100px;
+	height: 100px;
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%) rotate(90deg);
@@ -232,8 +246,8 @@ h1, h2, h3, h4 {
 } .playBtnTriangle {
 	overflow: hidden;
 	position: absolute;
-	top: -85px;
-	left: 43px;
+	top: -112px;
+	left: 19px;
 	margin: 7em auto 0;
 	border-radius: 15%;
 	filter: blur(0.1px);
@@ -273,8 +287,8 @@ h1, h2, h3, h4 {
 	padding-left: 445px;
 }
 #container.portrait {
-	height: 1920px;
-	width: 1080px;
+	height: 1366px;
+	width: 768px;
 }
 
 #seekSlider {
@@ -355,10 +369,6 @@ h1, h2, h3, h4 {
 
 		}
 	}
-	#menuTitle {
-		margin-top: 80px;
-		margin-bottom: -170px;
-	}
 	#obscurerLeft {
 		top: -20px;
 		left: -20px;
@@ -380,10 +390,10 @@ h1, h2, h3, h4 {
 		h1 {
 			font-family: MrEavesBold;
 			margin-top: 380px;
-			font-size: 100px;
+			font-size: 80px;
 		} h3 {
 			margin-top: 40px;
-			margin-left: 230px;
+			margin-left: 88px;
 			text-align: left;
 			font-size: 36px;
 		} #stillThereBtn {

@@ -1,6 +1,10 @@
 $(function() {
 	console.log('Media player connected...');
 
+	// document.addEventListener('contextmenu', function(e) {
+	// 	e.preventDefault();
+	// });
+
 	//	DOM variables
 	var $stillThereScreen = $('#stillThereScreen'),
 			$attractScreen = $('#attractScreen'),
@@ -27,6 +31,8 @@ $(function() {
 			$curTimeText = $('#curTimeText'),
 			$durTimeText = $('#durTimeText');
 
+	var lockedControls = false;
+
 	var idleTime = 0,
 			playing = true;
 
@@ -45,7 +51,7 @@ $(function() {
 	var defaultThumbnailFolder, defaultVideoFolder, defaultBslFolder, defaultSubtitleFolder;
 	var clipArray = [];
 
-	var specialSubs = [];
+
 
 	//	Called on first load
 	function firstLoad() {
@@ -140,30 +146,14 @@ $(function() {
 				thisClipObject.subtitlePath = $thisClip.find('subtitles folder').text() ? $thisClip.find('subtitles folder').text() : defaultSubtitleFolder;
 				thisClipObject.subtitlePath += '/' + $thisClip.find('subtitles file').text();
 			}
-			if($thisClip.find('specialSubs')) {
-				thisClipObject.specialSubs = [];
-				$thisClip.find('specialSubs sub').each(function(index, sub) {
-					var subObject = {};
-					console.log(config);
-					subObject.html = $(sub).find('html').html();
-					subObject.top = parseFloat($(sub).find('top').text());
-					subObject.left = $(sub).find('left').text() !== '' ? parseFloat($(sub).find('left').text()) : undefined;
-					subObject.right = $(sub).find('right').text() !== '' ? parseFloat($(sub).find('right').text()) : undefined;
-					subObject.class = $(sub).find('class').text();
-					subObject.startTime = parseFloat($(sub).find('startTime').text());
-					subObject.endTime = parseFloat($(sub).find('endTime').text());
-					console.log(subObject)
-					thisClipObject.specialSubs[index] = subObject;
-				});
-			}
 			//	Set up clip thumbnail
 			thisClipObject.thumbnailImagePath = $thisClip.find('thumbnailImage folder').text() ? $thisClip.find('thumbnailImage folder').text() : defaultThumbnailFolder;
 			thisClipObject.thumbnailImagePath += '/' + $thisClip.find('thumbnailImage file').text();
 
-			console.log(thisClipObject);
+			// console.log(thisClipObject);
 			clipArray.push(thisClipObject);
 		});
-		console.log(config);
+		// console.log(config);
 		bufferVid(0);
 		resetVideoPlayer();
 	}
@@ -189,13 +179,15 @@ $(function() {
 
 				//	Thumbnail click handler
 				$('#thumbnailDiv').children().last().on('click', function() {
-					$('.thumbnail').each(function(index, thumb){
-						$(thumb).addClass('unSelected animated');
-					});
-					$(this).removeClass('unSelected');
-					$(this).addClass('selected');
-					console.log('Playing ' + $(this).attr('data-clipArrayIndex'));
-					playClip($(this).attr('data-clipArrayIndex'));
+					if(!lockedControls) {
+						$('.thumbnail').each(function(index, thumb){
+							$(thumb).addClass('unSelected animated');
+						});
+						$(this).removeClass('unSelected');
+						$(this).addClass('selected');
+						console.log('Playing ' + $(this).attr('data-clipArrayIndex'));
+						playClip($(this).attr('data-clipArrayIndex'));
+					}
 				});
 			});
 			$('#thumbnailDiv').append('<div class="thumbPadDiv">&nbsp;</div>');
@@ -246,6 +238,7 @@ $(function() {
 			$videoMain.on('loadedmetadata', function() {
 				$videoMain.off('loadedmetadata');
 				clipArray[index].duration = formatDurationText(videoMain.duration);
+				console.log(videoMain.duration);
 				index++;
 				console.log("Video " + index + " buffered...");
 				bufferVid(index);
@@ -257,6 +250,7 @@ $(function() {
 
 	function formatDurationText(duration) {
 		duration = Math.floor(duration);
+		console.log("Duration: " + duration);
 		var formattedDuration;
 		if(duration <= 60) {
 			formattedDuration = duration + ' seconds';
@@ -271,16 +265,20 @@ $(function() {
 
 	//	Video clip control
 	function playClip(index) {
-		loadClip(index);
-		$videoPlayerScreen.show();
-		setTimeout(function() {
-			playVids();
-			rewindClip();
-			$menuScreen.fadeOut('slow', function() {
-				$('.thumbnail').removeClass('animated selected unSelected');
-				stopAttractorVids();
-			});
-		}, 1000);
+		if(!lockedControls) {
+			lockedControls = true;
+			loadClip(index);
+			$videoPlayerScreen.show();
+			setTimeout(function() {
+				playVids();
+				rewindClip();
+				$menuScreen.fadeOut('slow', function() {
+					$('.thumbnail').removeClass('animated selected unSelected');
+					stopAttractorVids();
+					lockedControls = false;
+				});
+			}, 1000);
+		}
 	}
 
 	function loadClip(index) {
@@ -302,13 +300,10 @@ $(function() {
 			$captionBtn.hide();
 		}
 		$videoBsl.get(0).load();
-		specialSubs = clipArray[index].specialSubs.slice(0);
-		console.log(specialSubs);
 	}
 
 	function rewindClip() {
-		videoMain.currentTime = 0;
-		videoBsl.currentTime = 0;
+		seekTimeTo(0);
 	}
 
 	function stopAttractorVids() {
@@ -376,8 +371,6 @@ $(function() {
 				$menuScreen.show();
 			} else {
 				rewindClip();
-				//	Trigger the status post (in controller.js)
-				$attractScreen.trigger('attractScreenShow');
 			}
 			if(callback && typeof(callback) === 'function') {
 				callback();
@@ -386,40 +379,54 @@ $(function() {
 	}
 
 	function showStillThereScreen() {
+		lockedControls = true;
 		console.log("Showing Still There screen");
 		stillThereTime = config.stillThereTimeMax;
 		$('#stillThereSpan').text(stillThereTime);
 		$stillThereScreen.fadeIn('fast', function() {
 			startStillThereTimer();
+			lockedControls = false;
 		});
 	}
 
 	function hideStillThereScreen() {
-		$stillThereScreen.fadeOut('fast');
+		lockedControls = true;
+		$stillThereScreen.fadeOut('fast', function() {
+			lockedControls = false;
+		});
 	}
 
 
 	//	Event handlers
 	$attractScreen.click(function() {
-		if(clipArray.length === 1) {
-			$menuScreen.hide();
-			playVids();
+		if(!lockedControls) {
+			lockedControls = true;
+			if(clipArray.length === 1) {
+				$menuScreen.hide();
+				seekTimeTo(0);
+				playVids();
+			}
+			$attractScreen.fadeOut('slow', function() {
+				restartInactivityTimer();
+				lockedControls = false;
+			});
 		}
-		$attractScreen.fadeOut('slow', function() {
-			restartInactivityTimer();
-		});
 	});
 
 	$stillThereScreen.click(function() {
-		hideStillThereScreen();
-		clearStillThereTimer();
-		restartInactivityTimer();
+		if(!lockedControls) {
+			hideStillThereScreen();
+			clearStillThereTimer();
+			restartInactivityTimer();
+		}
 	});
 	$stillThereScreen.on('touchstart', function() {
-		console.log("touch!");
-		hideStillThereScreen();
-		clearStillThereTimer();
-		restartInactivityTimer();
+		if(!lockedControls) {
+			console.log("touch!");
+			hideStillThereScreen();
+			clearStillThereTimer();
+			restartInactivityTimer();
+		}
 	});
 
 	$menuScreen.click(function() {
@@ -443,27 +450,37 @@ $(function() {
 
 	//	UI event listeners
 	$playPauseBtn.click(function() {
-		playPause();
+		if(!lockedControls) {
+			playPause();
+		}
 	});
 
 	$restartBtn.click(function() {
-		rewindClip();
+		if(!lockedControls) {
+			rewindClip();
+		}
 	});
 
 	$bslBtn.click(function() {
-		console.log("Toggling BSL video...");
-		$('#videoBsl').toggleClass('hidden');
-		$bslBtn.toggleClass('active');
+		if(!lockedControls) {
+			console.log("Toggling BSL video...");
+			$('#videoBsl').toggleClass('hidden');
+			$bslBtn.toggleClass('active');
+		}
 	});
 
 	$captionBtn.click(function() {
-		console.log("Toggling captions...");
-		$captionDisplay.toggleClass('hidden');
-		$captionBtn.toggleClass('active');
+		if(!lockedControls) {
+			console.log("Toggling captions...");
+			$captionDisplay.toggleClass('hidden');
+			$captionBtn.toggleClass('active');
+		}
 	});
 
 	$menuBtn.click(function() {
-		backToMenu();
+		if(!lockedControls) {
+			backToMenu();
+		}
 	});
 
 	//	Video controls
@@ -498,11 +515,9 @@ $(function() {
 		stopSeekSlider();
 	}
 
-	function backToMenu() {
+	function backToMenu(callback) {
 		clearTimeout(backToMenuHandler);
 		backToMenuHandler = 0;
-		$('.specialSub').removeClass('animate');
-		$('.specialSub').remove();
 		startAttractorVids();
 		if(clipArray.length > 1) {
 			$menuScreen.fadeIn('slow', function() {
@@ -514,17 +529,18 @@ $(function() {
 				rewindClip();
 				resetVideoPlayer();
 				clearInactivityTimer();
+				if(callback) {
+					callback();
+				}
 			});
 		}
 	}
 
-	$videoMain.on('ended', function() {
-		console.log("Video ended");
-		stopVids();
-		backToMenuHandler = setTimeout(function() {
-			backToMenu();
-		}, 3000);
-	});
+	// $videoMain.on('ended', function() {
+	// 	console.log("Video ended");
+	// 	stopVids();
+	// 	backToMenu();
+	// });
 
 
 	//	Reset BSL & sub display for new user
@@ -550,9 +566,11 @@ $(function() {
   $('#subtitleTrack').on('cuechange', function() {
     var myTrack = this.track;             // track element is "this"
     var myCues = myTrack.activeCues;      // activeCues is an array of current cues.
+
 		myTrack.mode = "hidden";
 	  $("#captionDisplay").empty();
     if (myCues.length > 0) {
+    	var html = myCues[0].getCueAsHTML();
 			$("#captionDisplay").html(myCues[0].getCueAsHTML());
     }
   });
@@ -607,50 +625,7 @@ $(function() {
 			$('#seekComplete').width(percentComplete);
 			vidTimeUpdate();
 			restartInactivityTimer();
-			updateSpecialSubs(true);
 		}, 100);
-	}
-
-	function updateSpecialSubs(animate) {
-		specialSubs.forEach(function(sub, index) {
-			if(!sub.displayed && videoMain.currentTime > sub.startTime && videoMain.currentTime < sub.endTime) {
-				sub.displayed = true;
-				var specialSub = '<span class="specialSub">' + sub.html + '</span>';
-				$('#videoPlayerDiv').append(specialSub);
-				if(sub.left) {
-					var css = {
-						'top': sub.top,
-						'left': sub.left
-					}
-				} else {
-					var css = {
-						'top': sub.top,
-						'right': sub.right
-					}
-				}
-				if(animate) {
-					$('.specialSub').last().addClass('animate');
-				}
-				$('.specialSub').last().addClass(sub.class);
-				$('.specialSub').last().css(css);
-				$('.specialSub').last().data('index', index);
-			}
-		});
-		$('.specialSub').each(function(index) {
-			if(videoMain.currentTime > specialSubs[$(this).data('index')].endTime || videoMain.currentTime < specialSubs[$(this).data('index')].startTime) {
-				specialSubs[$(this).data('index')].displayed = false;
-				if(animate) {
-					$(this).addClass('animate');
-					$(this).addClass('remove');
-					$(this).on('animationend', function() {
-						$(this).remove();
-						console.log("Special sub removed");
-					});
-				} else {
-					$(this).remove();
-				}
-			}
-		});
 	}
 
 	function stopSeekSlider() {
@@ -668,8 +643,6 @@ $(function() {
 	function seekTimeTo(position) {
 		videoMain.currentTime = position * videoMain.duration;
 		videoBsl.currentTime = videoMain.currentTime;
-		console.log(videoMain.currentTime);
-		updateSpecialSubs(false);
 		seekSliderTo(position);
 		if(playing && (position * videoMain.duration) < videoBsl.duration) {
 			playVids();
@@ -677,33 +650,129 @@ $(function() {
 	}
 
 	$('#seekSlider').on('click', function(e) {
-  	restartIdleTimer();
-  	var positionX = e.offsetX;
- 		var clickX = positionX < 0 ? 0 : positionX;
-		var width = $(this).width();
-		var position = clickX / width > 1 ? 1 : clickX / width;
-		seekTimeTo(position);
+		if(!lockedControls) {
+	  	restartIdleTimer();
+	  	var positionX = e.offsetX;
+	  	console.log(positionX);
+			var clickX = positionX < 0 ? 0 : positionX;
+			var width = $(this).width();
+			var position = clickX / width > 1 ? 1 : clickX / width;
+			seekTimeTo(position);
+		}
 	});
 
 	$('#seekSlider').on('touchstart', function(e) {
-  	restartIdleTimer();
-  	var positionX = e.touches[0].clientX - $seekSlider.position().left;
-		var clickX = positionX < 0 ? 0 : positionX;
-		var width = $(this).width();
-		var position = clickX / width > 1 ? 1 : clickX / width;
-		seekTimeTo(position);
+		if(!lockedControls) {
+	  	restartIdleTimer();
+	  	var positionX = e.touches[0].clientX - $seekSlider.position().left;
+			var clickX = positionX < 0 ? 0 : positionX;
+			var width = $(this).width();
+			var position = clickX / width > 1 ? 1 : clickX / width;
+			seekTimeTo(position);
+		}
 	});
 
 	$('#seekSlider').on('touchmove', function(e) {
-		e.preventDefault();
-  	restartIdleTimer();
-  	var positionX = e.touches[0].clientX - $seekSlider.position().left;
-		var clickX = positionX < 0 ? 0 : positionX;
-		var width = $(this).width();
-		var position = clickX / width > 1 ? 1 : clickX / width;
-		seekTimeTo(position);
+		if(!lockedControls) {
+			e.preventDefault();
+	  	restartIdleTimer();
+	  	var positionX = e.touches[0].clientX - $seekSlider.position().left;
+			var clickX = positionX < 0 ? 0 : positionX;
+			var width = $(this).width();
+			var position = clickX / width > 1 ? 1 : clickX / width;
+			seekTimeTo(position);
+		}
 	});
 
+
+
+
+
+	/************************************************************************/
+	// Controller functionality
+
+	var status;
+	var endHandler;
+	var ended = false;
+	var url = 'http://127.0.0.1:4886/status';
+	// var url = 'http://172.16.4.33:4886/status';
+	// var url = 'http://172.16.13.115:4888/status';
+
+	var vid = $('#videoMain')[0];
+
+	vid.addEventListener('play', function() {
+		console.log("Playing!");
+		var status = {
+			type: 'play'
+		}
+		postStatus(status);
+	});
+
+	vid.addEventListener('pause', function() {
+		if(vid.duration - vid.currentTime < 1) {
+			console.log("Paused at end of playback");
+			lockedControls = true;
+			resetPlayer();
+		} else {
+			console.log("Paused during playback");
+			var status = {
+				type: 'pause'
+			}
+			postStatus(status);
+		}
+	});
+
+	vid.addEventListener('seeked', function() {
+		if(ended) {	
+			//	Nothing
+			ended = false;
+		} else {
+			clearTimeout(endHandler);
+			console.log("Seeked to " + vid.currentTime);
+			var status = {
+				type: 'seeked',
+				to: vid.currentTime
+			}
+			postStatus(status);
+		}
+	});
+
+	function resetPlayer() {
+		endHandler = setTimeout(function() {
+			ended = true;
+			console.log("Resetting");
+			backToMenu(function() {
+				lockedControls = false;
+			});
+			var status = {
+				type: 'reset'
+			}
+			postStatus(status);
+			clearTimeout(endHandler);
+		}, 5000);
+	};
+
+	function postStatus(status) {
+		console.log("Posting status...");
+		$.ajax({
+			url: url,
+			type: 'POST',
+			data: status
+		})
+		.done(function(newStatus) {
+			newStatus = JSON.parse(newStatus);
+			console.log("Success! New status: " + newStatus.type);
+		})
+		.fail(function(err) {
+			console.log(err.statusText);
+		})
+	}
+
+
+
+
+
+	/********************************************************/
 	//	Run on first load
 	firstLoad();
 

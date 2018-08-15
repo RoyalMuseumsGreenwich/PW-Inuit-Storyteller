@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+
+	<xmlType>Content</xmlType>
+
+	<settings>
+		<inactivityTimerMax>60</inactivityTimerMax>
+		<stillThereTimeMax>10</stillThereTimeMax>
+		<!-- if portraitMode is not 'true', content is displayed landscape -->
+<!-- 		<portraitMode>true</portraitMode> -->
+		<portraitMode>true</portraitMode>
+		<layoutVariant>1</layoutVariant>
+		<showBslByDefault>false</showBslByDefault>
+		<showSubsByDefault>true</showSubsByDefault>
+		<autoLoop>false</autoLoop>
+	</settings>
+
+	<defaultFolders>
+		<video>media</video>
+		<bsl>media</bsl>
+		<subtitles>media</subtitles>
+		<thumbnailImages>media</thumbnailImages>
+	</defaultFolders>
+
+
+	<clips>
+
+		<clip>
+			<title>Inuit storyteller - player</title>
+			<description>Inuit storyteller - playerA</description>
+			<attribution></attribution>
+			<video>
+				<file>Inuit-Storyteller-29.06.18.mp4</file>
+			</video>
+			<subtitles>
+				<file>Inuit.vtt</file>
+				<folder>media</folder>
+			</subtitles>
+			<thumbnailImage>
+				<file>HMSVictory.jpg</file>
+			</thumbnailImage>
+		</clip>
+
+
+	</clips>
+
+</document>
